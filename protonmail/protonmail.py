@@ -8,10 +8,11 @@ from getpass import getpass
 from typing import List
 
 from proton.api import Session
-from protonmail.api import contacts, labels, conversations
+from protonmail.api import contacts, labels, conversations, users
 from protonmail.api.contacts import Contact
 from protonmail.api.conversations import Conversation
 from protonmail.api.labels import Label
+from protonmail.api.users import User
 
 class ProtonMail:
 
@@ -49,6 +50,10 @@ class ProtonMail:
 
             with open("/tmp/proton/session.json", "w") as session_file:
                 session_file.write(str(session_dump))
+
+    @property
+    def me(self) -> User:
+        return users.api_request(self.session)
 
     @property
     def conversations(self, page: int = 0, items_per_page: int = 50, label: Label = None) -> List[Conversation]:
