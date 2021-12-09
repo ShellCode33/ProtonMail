@@ -1,0 +1,5 @@
+requests
+bcrypt
+python-gnupg
+pyopenssl
+https://github.com/ProtonMail/proton-python-client/archive/refs/tags/0.7.1.tar.gz
