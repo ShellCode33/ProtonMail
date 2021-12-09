@@ -8,10 +8,10 @@ from getpass import getpass
 from typing import List
 
 from proton.api import Session
-from protonmail.api.v4 import contacts, labels, conversations
-from protonmail.api.v4.contacts import Contact
-from protonmail.api.v4.conversations import Conversation
-from protonmail.api.v4.labels import Label
+from protonmail.api import contacts, labels, conversations
+from protonmail.api.contacts import Contact
+from protonmail.api.conversations import Conversation
+from protonmail.api.labels import Label
 
 class ProtonMail:
 

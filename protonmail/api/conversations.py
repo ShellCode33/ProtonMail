@@ -1,8 +1,8 @@
 # coding: utf-8
 
 from proton.api import Session
-from protonmail.api.v4.contacts import Contact, ContactInfo
-from protonmail.api.v4.labels import Label
+from protonmail.api.contacts import Contact, ContactInfo
+from protonmail.api.labels import Label
 
 from dataclasses import dataclass
 
