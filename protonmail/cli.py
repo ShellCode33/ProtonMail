@@ -31,7 +31,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description='Welcome to the ProtonMail utility !')
     parser.add_argument("username", help='The username to log in with')
 
-    parser.add_argument("--filter", help='Returns a list of emails that meet the given filter', required=True)
+    parser.add_argument("--filter", help='Returns a list of emails that meet the given filter')
     parser.add_argument("--summary", action='store_true', help='Prints a summary of filtered emails')
     parser.add_argument("--mark-as", choices=["read", "unread"], help='Set filtered emails state')
     parser.add_argument("--labelize", help='Labelize filtered emails with given label name')
@@ -42,6 +42,9 @@ def main() -> None:
         client = ProtonMail()
         client.auth(args.username)
         Logger.info(f"You logged in successfully as {args.username}")
+
+        if args.summary:
+            print(client.summary())
 
     except ProtonAPIError as pae:
         Logger.error(str(pae))

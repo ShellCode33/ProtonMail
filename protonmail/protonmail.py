@@ -14,6 +14,7 @@ from protonmail.api.conversations import Conversation
 from protonmail.api.labels import Label
 from protonmail.api.users import User
 
+
 class ProtonMail:
 
     API_URL = "https://mail.protonmail.com/api"
@@ -50,6 +51,21 @@ class ProtonMail:
 
             with open("/tmp/proton/session.json", "w") as session_file:
                 session_file.write(str(session_dump))
+
+    def summary(self) -> str:
+        user = self.me
+        used_storage = user.used_storage / 1024 / 1024 # MB
+        max_storage = user.max_storage / 1024 / 1024 / 1024 # GB
+
+        used_storage_str = f"{int(used_storage)} MB" if used_storage < 1024 else f"{used_storage // 1024} GB"
+
+        s = f"""\
+        Profile of {user.name} [{user.email}] {"(Premium)" if user.subscribed else ""}
+
+        Unread messages: TODO
+        Used storage: {used_storage_str} / {int(max_storage)} GB ({(used_storage / 1024 * 100) // max_storage}%)
+        """
+        return "\n".join([line.strip() for line in s.split("\n")])
 
     @property
     def me(self) -> User:
